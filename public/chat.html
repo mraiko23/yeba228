@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Messenger - Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="chat-container">
+      <div class="sidebar" id="sidebar">
+        <button id="hamburger-btn" class="hamburger-btn">☰</button>
+        <div class="sidebar-header">
+          <div class="avatar" id="user-avatar" onclick="openProfileModal()">U</div>
+          <span id="user-name" onclick="openProfileModal()">User</span>
+          <div id="online-count" class="online-count">0 online</div>
+        </div>
+        <div class="sidebar-actions">
+          <button id="create-chat-btn" class="action-btn">+ New Chat</button>
+          <button id="create-channel-btn" class="action-btn">+ New Channel</button>
+        </div>
+        <div class="rooms-list" id="rooms-list">
+          <!-- Rooms will be loaded here -->
+        </div>
+        <button id="logout-btn">Logout</button>
+      </div>
+      <div class="main-chat">
+        <div class="chat-header">
+          <div class="room-info">
+            <h1 id="room-name">General Chat</h1>
+            <span id="online-count">0 online</span>
+          </div>
+          <div class="call-buttons">
+            <button class="call-btn voice-call" id="voice-call-btn" title="Voice Call">📞</button>
+            <button class="call-btn video-call" id="video-call-btn" title="Video Call">📹</button>
+          </div>
+        </div>
+        <div id="chat-messages"></div>
+        <form id="message-form" class="message-form">
+          <input type="text" id="message-input" placeholder="Type your message..." required>
+          <button type="button" id="emoji-btn">😊</button>
+          <button type="button" id="file-btn">📎</button>
+          <button type="button" id="poll-btn">📊</button>
+          <button type="submit" id="send-btn">📤</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Profile Modal -->
+  <div id="profile-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeProfileModal()">&times;</span>
+      <h2>Edit Profile</h2>
+      <form id="profile-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter username">
+        <label for="display-name">Display Name:</label>
+        <input type="text" id="display-name" placeholder="Enter display name">
+        <label for="avatar-upload">Avatar:</label>
+        <input type="file" id="avatar-upload" accept="image/*">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Chat Modal -->
+  <div id="create-chat-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeCreateChatModal()">&times;</span>
+      <h2>Create New Chat</h2>
+      <form id="create-chat-form">
+        <label for="chat-type">Type:</label>
+        <select id="chat-type">
+          <option value="private">Private Chat</option>
+          <option value="channel">Channel</option>
+        </select>
+        <label for="chat-name">Name:</label>
+        <input type="text" id="chat-name" placeholder="Enter chat name" required>
+        <label for="target-user" id="target-user-label" style="display: none;">Target User:</label>
+        <input type="text" id="target-user" placeholder="Enter username" style="display: none;">
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Emoji Picker Modal -->
+  <div id="emoji-modal" class="modal" style="display: none;">
+    <div class="modal-content emoji-content">
+      <span class="close" onclick="closeEmojiModal()">&times;</span>
+      <h2>Select Emoji</h2>
+      <div id="emoji-list" class="emoji-list">
+        😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨 🧐 🤓 😎 🤩 🥳 😏 😒 😞 😔 😟 😕 🙁 ☹️ 😣 😖 😫 😩 🥺 😢 😭 😤 😠 😡 🤬 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤗 🤔 🤭 🤫 🤥 😶 😐 😑 😬 🙄 😯 😦 😧 😮 😲 🥱 😴 🤤 😪 😵 🤐 🥴 🤢 🤮 🤧 😷 🤒 🤕 🤑 🤠 😈 👿 👹 👺 🤡 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾
+      </div>
+    </div>
+  </div>
+
+  <!-- Poll Creation Modal -->
+  <div id="poll-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closePollModal()">&times;</span>
+      <h2>Create Poll</h2>
+      <form id="poll-form">
+        <label for="poll-question">Question:</label>
+        <input type="text" id="poll-question" placeholder="Enter poll question" required>
+        <div id="poll-options">
+          <label>Options:</label>
+          <div class="poll-option-container">
+            <input type="text" class="poll-option" placeholder="Option 1" required>
+            <button type="button" class="delete-option-btn" style="display: none;">❌</button>
+          </div>
+          <div class="poll-option-container">
+            <input type="text" class="poll-option" placeholder="Option 2" required>
+            <button type="button" class="delete-option-btn" style="display: none;">❌</button>
+          </div>
+        </div>
+        <button type="button" id="add-option-btn">Add Option</button>
+        <button type="submit">Create Poll</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

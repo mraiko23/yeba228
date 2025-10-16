@@ -1,0 +1,42 @@
+# TODO for Simple Messenger Website
+
+- [x] Create package.json with dependencies
+- [x] Create server.js with Express server and routes
+- [x] Create public/index.html for login/register forms
+- [x] Create public/chat.html for messaging interface
+- [x] Create public/style.css for basic styling
+- [x] Create public/script.js for frontend logic
+- [x] Run npm install to install dependencies
+- [x] Run node server.js to start the server
+- [x] Test the website using browser (server running on localhost:3000)
+- [x] Enhance UI to modern Telegram/WhatsApp style
+- [x] Add profile pictures/avatars
+- [x] Add online status (basic implementation)
+- [x] Add video/audio calls using WebRTC (requires more complex setup)
+- [x] Implement working voice/video calls
+- [x] Add more features like message timestamps, typing indicators
+- [x] Restart server after enhancements
+- [x] Test enhanced website
+- [x] Fix message disappearing issue (optimize polling and local updates)
+- [x] Add multiple chat rooms/system
+- [x] Add user profiles
+- [x] Implement proper WebRTC calls
+- [x] Make it fully like Telegram/WhatsApp
+- [x] Add WebSocket for real-time messaging (removed due to Node.js version compatibility)
+- [x] Improve layout to be exactly like Telegram/WhatsApp
+- [x] Add Socket.IO for real-time messaging and calls
+- [x] Implement call notifications and joining calls
+- [x] Show call participants next to call button in rooms
+- [x] Add beautiful profile usernames and avatars
+- [x] Add data persistence for chats and users
+- [x] Allow users to create custom groups/channels with admin roles
+- [x] Add emoji picker
+- [x] Add file attachments
+- [x] Add poll creation with persistence
+- [x] Improve mobile UI with hamburger menu and responsive design
+- [x] Add dynamic chat creation (private chats and channels)
+- [x] Implement username change functionality
+- [x] Add link sharing for rooms (URL parameters)
+- [x] Update UI for user-specific chats list
+- [x] Add message actions (reply, copy, edit) with hover effects
+- [x] Add message IDs to all messages for actions
